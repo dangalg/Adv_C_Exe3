@@ -25,7 +25,7 @@ void enqueue(Queue* q, unsigned int data)
 	p->data = data; 
 	p->next = NULL;
 
-	if (!isEmpty(q)) {
+	if (!isEmptyQueue(q)) {
 		q->tail->next = p;
 	}
 	else
