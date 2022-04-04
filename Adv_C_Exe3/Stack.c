@@ -1,13 +1,14 @@
 #include "Stack.h"
 #include <stdio.h>
 /***************** Stack ADT Implementation *****************/
-
+charNode* addToHead(charNode* head, charNode* toAdd);
 void removeHead(charNode** head);
 void printStack(const Stack* s);
 
 void initStack(Stack* s)
 {
 	// add your code here
+	s->head = NULL;
 }
 
 void destroyStack(Stack* s)
@@ -28,7 +29,23 @@ void destroyStack(Stack* s)
 void push(Stack* s, char data)
 {
 	// add your code here
+	charNode* newnode = (charNode*)malloc(sizeof(charNode));
+	if (newnode == NULL) {
+		printf("push: memory allocation problem\n");
+		return;
+	}
+	newnode->data = data;
+	s->head= addToHead(s->head, newnode);
 }
+
+//pushing the chars inside the stack.
+charNode* addToHead(charNode* head, charNode* toAdd)
+{
+	toAdd->next = head;
+	head = toAdd;
+	return head;
+}
+
 
 char pop(Stack* s)
 {
@@ -43,6 +60,7 @@ char pop(Stack* s)
 int isEmptyStack(const Stack* s)
 {
 	// add your code here
+	return (!(s->head));
 }
 
 /*************** Functions using stacks - Implementation/definition **************************/
