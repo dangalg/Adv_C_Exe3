@@ -145,23 +145,25 @@ void rotateStack(Stack* s, int n)
 	Stack* sideStack = (Stack*)malloc(sizeof(Stack));
 	initStack(sideStack);
 
-	// insert first n items into side stack insert the rest back into original stack
+	// insert first n items into side stack 
 	for (int i = 0; i < n; i++)
 	{
 		push(sideStack, pop(tmpStack));
 	}
 
+	// insert the rest back into original stack
 	while (tmpStack->head != NULL)
 	{
 		push(s, pop(tmpStack));
 	}
 
-	// insert n items back into tmp stack to flip them and then back to original stack
+	// insert n items back into tmp stack to flip them
 	while (sideStack->head != NULL)
 	{
 		push(tmpStack, pop(sideStack));
 	}
 	
+	// return them back to original stack
 	while (tmpStack->head != NULL)
 	{
 		push(s, pop(tmpStack));
