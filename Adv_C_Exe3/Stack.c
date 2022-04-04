@@ -55,7 +55,7 @@ void flipBetweenHashes(const char* sentence)
 	}
 
 	// add your code here
-	Stack* tmpStack = NULL;
+	Stack* tmpStack = (Stack*)malloc(sizeof(Stack));
 	initStack(tmpStack);
 
 	// counts the amount of hashes
@@ -96,6 +96,9 @@ void flipBetweenHashes(const char* sentence)
 
 		sentence++;
 	}
+
+	destroyStack(tmpStack);
+	free(tmpStack);
 }
 
 int isPalindrome(Stack* s)
@@ -106,6 +109,69 @@ int isPalindrome(Stack* s)
 void rotateStack(Stack* s, int n)
 {
 	// add your code here
+	if (n < 0)
+	{
+		return;
+	}
+
+	if (s == NULL)
+	{
+		return;
+	}
+
+	Stack* tmpStack = (Stack*)malloc(sizeof(Stack));
+	initStack(tmpStack);
+	int counter = 0;
+
+	// push all chars to temp stack
+	while (s->head != NULL)
+	{
+		counter++;
+		push(tmpStack, pop(s));
+	}
+
+	// there are less items in the stack than n so return items to stack and return
+	if (counter < n)
+	{
+		while (tmpStack->head != NULL)
+		{
+			counter++;
+			push(s, pop(s));
+		}
+		destroyStack(tmpStack);
+		return;
+	}
+
+	Stack* sideStack = (Stack*)malloc(sizeof(Stack));
+	initStack(sideStack);
+
+	// insert first n items into side stack insert the rest back into original stack
+	for (int i = 0; i < n; i++)
+	{
+		push(sideStack, pop(tmpStack));
+	}
+
+	while (tmpStack->head != NULL)
+	{
+		push(s, pop(tmpStack));
+	}
+
+	// insert n items back into tmp stack to flip them and then back to original stack
+	while (sideStack->head != NULL)
+	{
+		push(tmpStack, pop(sideStack));
+	}
+	
+	while (tmpStack->head != NULL)
+	{
+		push(s, pop(tmpStack));
+	}
+
+	destroyStack(tmpStack);
+	destroyStack(sideStack);
+	free(tmpStack);
+	free(sideStack);
+
 }
 
 void removeHead(charNode** head)
