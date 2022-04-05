@@ -142,19 +142,20 @@ void rotateStack(Stack* s, int n)
 	int counter = 0;
 
 	// push all chars to temp stack
-	while (s->head != NULL)
+	char letter;
+	while (letter = pop(s))
 	{
 		counter++;
-		push(tmpStack, pop(s));
+		push(tmpStack, letter);
 	}
 
 	// there are less items in the stack than n so return items to stack and return
 	if (counter < n)
 	{
-		while (tmpStack->head != NULL)
+		while (letter = pop(s))
 		{
 			counter++;
-			push(s, pop(s));
+			push(s, letter);
 		}
 		destroyStack(tmpStack);
 		return;
@@ -170,21 +171,21 @@ void rotateStack(Stack* s, int n)
 	}
 
 	// insert the rest back into original stack
-	while (tmpStack->head != NULL)
+	while (letter = pop(tmpStack))
 	{
-		push(s, pop(tmpStack));
+		push(s, letter);
 	}
 
 	// insert n items back into tmp stack to flip them
-	while (sideStack->head != NULL)
+	while (letter = pop(sideStack))
 	{
-		push(tmpStack, pop(sideStack));
+		push(tmpStack, letter);
 	}
 	
 	// return them back to original stack
-	while (tmpStack->head != NULL)
+	while (letter = pop(tmpStack))
 	{
-		push(s, pop(tmpStack));
+		push(s, letter);
 	}
 
 	destroyStack(tmpStack);
@@ -208,10 +209,17 @@ void removeHead(charNode** head)
 
 void printStack(const Stack* s)
 {
-	charNode* tmp = s->head;
-	while (tmp != NULL)
+	Stack* tmpStack = (Stack*)malloc(sizeof(Stack));
+	init(tmpStack);
+	char letter;
+	while (letter = pop(s))
 	{
-		printf("%c", tmp->data);
-		tmp = tmp->next;
+		push(tmpStack, letter);
+		printf("%c", letter);
+	}
+
+	while (letter = pop(tmpStack))
+	{
+		push(s, letter);
 	}
 }
