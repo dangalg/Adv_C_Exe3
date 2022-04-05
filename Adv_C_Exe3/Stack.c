@@ -222,4 +222,7 @@ void printStack(const Stack* s)
 	{
 		push(s, letter);
 	}
+
+	destroyStack(tmpStack);
+	free(tmpStack);
 }
