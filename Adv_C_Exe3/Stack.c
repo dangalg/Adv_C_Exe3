@@ -38,14 +38,6 @@ void push(Stack* s, char data)
 	s->head= addToHead(s->head, newnode);
 }
 
-//pushing the chars inside the stack.
-charNode* addToHead(charNode* head, charNode* toAdd)
-{
-	toAdd->next = head;
-	head = toAdd;
-	return head;
-}
-
 
 char pop(Stack* s)
 {
@@ -225,4 +217,12 @@ void printStack(const Stack* s)
 
 	destroyStack(tmpStack);
 	free(tmpStack);
+}
+
+//pushing the chars inside the stack.
+charNode* addToHead(charNode* head, charNode* toAdd)
+{
+	toAdd->next = head;
+	head = toAdd;
+	return head;
 }
