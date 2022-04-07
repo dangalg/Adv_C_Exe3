@@ -198,3 +198,22 @@ void sortKidsFirst(Queue* q)
 {
 	// add your code here
 }
+
+void printQueue(const Queue* q)
+{
+	Queue tmpQueue;
+	initQueue(&tmpQueue);
+	int val;
+	while (val = dequeue(q))
+	{
+		enqueue(&tmpQueue, val);
+		printf("%d", val);
+	}
+
+	while (val = dequeue(&tmpQueue))
+	{
+		enqueue(q, val);
+	}
+
+	destroyQueue(&tmpQueue);
+}

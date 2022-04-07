@@ -8,7 +8,9 @@ void printStack(const Stack* s);
 void main() {
 	int num;
 	Stack S;
-	initStack(&S, 5);
+	Queue Q;
+	initStack(&S);
+	initQueue(&Q);
 
 	while (1) {
 		switch (menu())
@@ -44,6 +46,7 @@ void main() {
 	}// while 
 
 	destroyStack(&S);
+	destroyQueue(&Q);
 
 }// main 
 
@@ -53,7 +56,7 @@ char menu()
 \n 1. Add element to stack \
 \n 2. Delete element from the stack\
 \n 3. Display stack \
-\n 4. sum stack Odds and oppiset evens locations \
+\n 4. Rotate Stack \
 \n 0. Exit \n\
 \n Your choice: ");
 	fseek(stdin, SEEK_END, 0);
