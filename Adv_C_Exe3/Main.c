@@ -3,11 +3,12 @@
 #include "Queue.h"
 
 char menu();
+void printStack(const Stack* s);
 
 void main() {
 	int num;
 	Stack S;
-	init(&S, 5);
+	initStack(&S, 5);
 
 	while (1) {
 		switch (menu())
@@ -28,10 +29,10 @@ void main() {
 			}
 			break;
 		case '3':
-			isPalindrome(&S);
+			printStack(&S);
 			break;
 		case '4':
-			retainOddAndOppisetEven(&S);
+			rotateStack(&S, 1);
 			break;
 		case '0':
 			printf("\n Exit ");
@@ -42,7 +43,7 @@ void main() {
 		}// switch 
 	}// while 
 
-	destroy(&S);
+	destroyStack(&S);
 
 }// main 
 
