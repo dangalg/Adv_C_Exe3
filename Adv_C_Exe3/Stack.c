@@ -44,9 +44,12 @@ char pop(Stack* s)
 {
 	// add your code here
 	char res;
-	if (s == NULL) { printf("\nStack is empty"); return NULL; }
+	if (s->head == NULL) 
+	{ 
+		return NULL; 
+	}
 	res = s->head->data;
-	removeHead(s->head);
+	removeHead(&s->head);
 	return res;
 }
 

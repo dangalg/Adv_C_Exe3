@@ -6,7 +6,7 @@ char menu();
 void printStack(const Stack* s);
 
 void main() {
-	int num;
+	char letter;
 	Stack S;
 	Queue Q;
 	initStack(&S);
@@ -17,8 +17,9 @@ void main() {
 		{
 		case '1':
 			printf("Enter the data: ");
-			scanf_s("%d", &num);
-			push(&S, num);
+			fseek(stdin, 0, SEEK_END);
+			scanf_s("%c", &letter);
+			push(&S, letter);
 			break;
 		case '2':
 			if (!isEmptyStack(&S))
