@@ -129,8 +129,8 @@ void rotateStack(Stack* s, int n)
 		return;
 	}
 
-	Stack* tmpStack = (Stack*)malloc(sizeof(Stack));
-	initStack(tmpStack);
+	Stack tmpStack;
+	initStack(&tmpStack);
 	int counter = 0;
 
 	// push all chars to temp stack
@@ -138,7 +138,7 @@ void rotateStack(Stack* s, int n)
 	while (letter = pop(s))
 	{
 		counter++;
-		push(tmpStack, letter);
+		push(&tmpStack, letter);
 	}
 
 	// there are less items in the stack than n so return items to stack and return
@@ -149,41 +149,39 @@ void rotateStack(Stack* s, int n)
 			counter++;
 			push(s, letter);
 		}
-		destroyStack(tmpStack);
+		destroyStack(&tmpStack);
 		return;
 	}
 
-	Stack* sideStack = (Stack*)malloc(sizeof(Stack));
-	initStack(sideStack);
+	Stack sideStack;
+	initStack(&sideStack);
 
 	// insert first n items into side stack 
 	for (int i = 0; i < n; i++)
 	{
-		push(sideStack, pop(tmpStack));
+		push(&sideStack, pop(&tmpStack));
 	}
 
 	// insert the rest back into original stack
-	while (letter = pop(tmpStack))
+	while (letter = pop(&tmpStack))
 	{
 		push(s, letter);
 	}
 
 	// insert n items back into tmp stack to flip them
-	while (letter = pop(sideStack))
+	while (letter = pop(&sideStack))
 	{
-		push(tmpStack, letter);
+		push(&tmpStack, letter);
 	}
 	
 	// return them back to original stack
-	while (letter = pop(tmpStack))
+	while (letter = pop(&tmpStack))
 	{
 		push(s, letter);
 	}
 
-	destroyStack(tmpStack);
-	destroyStack(sideStack);
-	free(tmpStack);
-	free(sideStack);
+	destroyStack(&tmpStack);
+	destroyStack(&sideStack);
 
 }
 
@@ -201,22 +199,21 @@ void removeHead(charNode** head)
 
 void printStack(const Stack* s)
 {
-	Stack* tmpStack = (Stack*)malloc(sizeof(Stack));
-	init(tmpStack);
+	Stack tmpStack;
+	initStack(&tmpStack);
 	char letter;
 	while (letter = pop(s))
 	{
-		push(tmpStack, letter);
+		push(&tmpStack, letter);
 		printf("%c", letter);
 	}
 
-	while (letter = pop(tmpStack))
+	while (letter = pop(&tmpStack))
 	{
 		push(s, letter);
 	}
 
-	destroyStack(tmpStack);
-	free(tmpStack);
+	destroyStack(&tmpStack);
 }
 
 //pushing the chars inside the stack.

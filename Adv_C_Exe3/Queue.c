@@ -107,12 +107,12 @@ void cutAndReplace(Queue* q)
 	}
 
 	// create helper stacks
-	Queue* firstHalfQueue = (Queue*)malloc(sizeof(Queue));
-	Queue* secondHalfQueue = (Queue*)malloc(sizeof(Queue));
-	Queue* tempQueue = (Queue*)malloc(sizeof(Queue));
-	init(firstHalfQueue);
-	init(secondHalfQueue);
-	init(tempQueue);
+	Queue firstHalfQueue;
+	Queue secondHalfQueue;
+	Queue tempQueue;
+	initQueue(&firstHalfQueue);
+	initQueue(&secondHalfQueue);
+	initQueue(&tempQueue);
 
 	// get queue length
 	int length = 0, val = 0, sum = 0, average = 0;
@@ -126,7 +126,7 @@ void cutAndReplace(Queue* q)
 		sum += val;
 
 		// save value in storage
-		enqueue(secondHalfQueue, val);
+		enqueue(&secondHalfQueue, val);
 	}
 
 	// if length is odd, get the average and add it to the end
@@ -136,7 +136,7 @@ void cutAndReplace(Queue* q)
 		average = sum / length;
 
 		// add average to end of queue
-		enqueue(secondHalfQueue, average);
+		enqueue(&secondHalfQueue, average);
 
 		// add 1 to length
 		length++;
@@ -146,7 +146,7 @@ void cutAndReplace(Queue* q)
 	// after this first half of queue will be in firstHalfQueue, second half will be in secondHalfQueue queue
 	for (int i = 0; i < length/2; i++)
 	{
-		enqueue(firstHalfQueue, dequeue(secondHalfQueue));
+		enqueue(&firstHalfQueue, dequeue(&secondHalfQueue));
 	}
 
 	// flip secondHalfQueue queue
@@ -159,24 +159,24 @@ void cutAndReplace(Queue* q)
 		{
 			for (int j = 0; j < (length / 2); j++)
 			{
-				val = dequeue(secondHalfQueue);
+				val = dequeue(&secondHalfQueue);
 				if (j == indexToTake)
 				{
 					enqueue(q, val);
 				}
-				enqueue(tempQueue, val);
+				enqueue(&tempQueue, val);
 			}
 		}
 		else
 		{
 			for (int j = 0; j < (length / 2); j++)
 			{
-				val = dequeue(tempQueue);
+				val = dequeue(&tempQueue);
 				if (j == indexToTake)
 				{
 					enqueue(q, val);
 				}
-				enqueue(secondHalfQueue, val);
+				enqueue(&secondHalfQueue, val);
 			}
 		}
 		transferDirection *= -1;
@@ -186,15 +186,12 @@ void cutAndReplace(Queue* q)
 	// add first half back to end of queue
 	for (int i = 0; i < length / 2; i++)
 	{
-		enqueue(q, dequeue(firstHalfQueue));
+		enqueue(q, dequeue(&firstHalfQueue));
 	}
 
-	destroyQueue(firstHalfQueue);
-	destroyQueue(secondHalfQueue);
-	destroyQueue(tempQueue);
-	free(firstHalfQueue);
-	free(secondHalfQueue);
-	free(tempQueue);
+	destroyQueue(&firstHalfQueue);
+	destroyQueue(&secondHalfQueue);
+	destroyQueue(&tempQueue);
 }
 
 void sortKidsFirst(Queue* q)
