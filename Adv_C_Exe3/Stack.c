@@ -1,5 +1,6 @@
 #include "Stack.h"
 #include <stdio.h>
+#include <stdlib.h>
 /***************** Stack ADT Implementation *****************/
 charNode* addToHead(charNode* head, charNode* toAdd);
 void removeHead(charNode** head);
@@ -43,7 +44,7 @@ char pop(Stack* s)
 {
 	// add your code here
 	char res;
-	if (s != NULL) { printf("\nStack is empty"); return NULL; }
+	if (s == NULL) { printf("\nStack is empty"); return NULL; }
 	res = s->head->data;
 	removeHead(s->head);
 	return res;
