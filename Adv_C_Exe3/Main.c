@@ -89,17 +89,17 @@ char menu()
 {
 	printf("\n\t MAIN MENU:\
 \n 1.  Add element to stack \
-\n 2.  Delete element from the stack\
-\n 3.  Display stack \
+\n 2.  pop from the stack\
+\n 3.  Print stack \
 \n 4.  Rotate Stack \
-\n 5.  flip Between Hashes \
-\n 6.  is Palindrome\
+\n 5.  Flip Between Hashes \
+\n 6.  Is Palindrome\
 \n 7.  Add element to queue \
-\n 8.  dequeue \
-\n 9.  print Queue \
-\n 10. rotate Queue\
-\n 11. cut And Replace \
-\n 12. sort Kids First \
+\n 8.  Dequeue \
+\n 9.  Print Queue \
+\n 10. Rotate Queue\
+\n 11. Cut And Replace \
+\n 12. Sort Kids First \
 \n 0.  Exit \n\
 \n Your choice: ");
 	fseek(stdin, SEEK_END, 0);
