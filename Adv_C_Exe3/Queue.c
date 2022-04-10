@@ -55,7 +55,7 @@ unsigned int dequeue(Queue* q)
 	// add your code here
 	if (isEmptyQueue(q))
 	{
-		return 0;
+		return NULL;
 	}
 	int temp = q->head->data;
 	intNode* p = q->head;
@@ -119,8 +119,9 @@ void cutAndReplace(Queue* q)
 	// get queue length
 	int length = 0, val = 0, sum = 0, average = 0;
 
-	while (val = dequeue(q))
+	while (!isEmptyQueue(q))
 	{
+		val = dequeue(q);
 		// add 1 to length
 		length++;
 
@@ -206,14 +207,16 @@ void printQueue(const Queue* q)
 	Queue tmpQueue;
 	initQueue(&tmpQueue);
 	int val;
-	while (val = dequeue(q))
+	while (!isEmptyQueue(q))
 	{
+		val = dequeue(q);
 		enqueue(&tmpQueue, val);
 		printf("%d", val);
 	}
 
-	while (val = dequeue(&tmpQueue))
+	while (!isEmptyQueue(&tmpQueue))
 	{
+		val = dequeue(&tmpQueue);
 		enqueue(q, val);
 	}
 

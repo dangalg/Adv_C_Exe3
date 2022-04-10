@@ -139,8 +139,9 @@ void rotateStack(Stack* s, int n)
 
 	// push all chars to temp stack
 	char letter;
-	while (letter = pop(s))
+	while (!isEmptyStack(s))
 	{
+		letter = pop(s);
 		counter++;
 		push(&tmpStack, letter);
 	}
@@ -148,8 +149,9 @@ void rotateStack(Stack* s, int n)
 	// there are less items in the stack than n so return items to stack and return
 	if (counter < n)
 	{
-		while (letter = pop(s))
+		while (!isEmptyStack(s))
 		{
+			letter = pop(s);
 			counter++;
 			push(s, letter);
 		}
@@ -167,20 +169,23 @@ void rotateStack(Stack* s, int n)
 	}
 
 	// insert the rest back into original stack
-	while (letter = pop(&tmpStack))
+	while (!isEmptyStack(&tmpStack))
 	{
+		letter = pop(&tmpStack);
 		push(s, letter);
 	}
 
 	// insert n items back into tmp stack to flip them
-	while (letter = pop(&sideStack))
+	while (!isEmptyStack(&sideStack))
 	{
+		letter = pop(&sideStack);
 		push(&tmpStack, letter);
 	}
 	
 	// return them back to original stack
-	while (letter = pop(&tmpStack))
+	while (!isEmptyStack(&tmpStack))
 	{
+		letter = pop(&tmpStack);
 		push(s, letter);
 	}
 
@@ -206,14 +211,16 @@ void printStack(const Stack* s)
 	Stack tmpStack;
 	initStack(&tmpStack);
 	char letter;
-	while (letter = pop(s))
+	while (!isEmptyStack(s))
 	{
+		letter = pop(s);
 		push(&tmpStack, letter);
 		printf("%c", letter);
 	}
 
-	while (letter = pop(&tmpStack))
+	while (!isEmptyStack(s))
 	{
+		letter = pop(&tmpStack);
 		push(s, letter);
 	}
 
