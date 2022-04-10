@@ -55,7 +55,7 @@ unsigned int dequeue(Queue* q)
 	// add your code here
 	if (isEmptyQueue(q))
 	{
-		return NULL;
+		return 0;
 	}
 	int temp = q->head->data;
 	intNode* p = q->head;
