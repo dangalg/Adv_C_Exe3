@@ -7,6 +7,7 @@ void printStack(const Stack* s);
 
 void main() {
 	char letter;
+	int val;
 	Stack S;
 	Queue Q;
 	initStack(&S);
@@ -16,7 +17,7 @@ void main() {
 		switch (menu())
 		{
 		case '1':
-			printf("Enter the data: ");
+			printf("Enter stack data: ");
 			fseek(stdin, 0, SEEK_END);
 			scanf_s("%c", &letter);
 			push(&S, letter);
@@ -40,6 +41,36 @@ void main() {
 		case '5':
 			flipBetweenHashes("ab");
 			break;
+		case '6':
+			isPalindrome(&S);
+			break;
+		case '7':
+			printf("Enter queue data: ");
+			scanf_s("%d", &val);
+			enqueue(&Q, val);
+			break;
+		case '8':
+			if (!isEmptyQueue(&Q))
+			{
+				printf("\n Dequeued %d", dequeue(&Q));
+			}
+			else
+			{
+				printf("\ncannot dequeue from empty Stack!\n");
+			}
+			break;
+		case '9':
+			printQueue(&Q);
+			break;
+		case '10':
+			rotateQueue(&Q, 1);
+			break;
+		case '11':
+			cutAndReplace(&Q);
+			break;
+		case '12':
+			sortKidsFirst(&Q);
+			break;
 		case '0':
 			printf("\n Exit ");
 			system("pause");
@@ -57,11 +88,19 @@ void main() {
 char menu()
 {
 	printf("\n\t MAIN MENU:\
-\n 1. Add element to stack \
-\n 2. Delete element from the stack\
-\n 3. Display stack \
-\n 4. Rotate Stack \
-\n 0. Exit \n\
+\n 1.  Add element to stack \
+\n 2.  Delete element from the stack\
+\n 3.  Display stack \
+\n 4.  Rotate Stack \
+\n 5.  flip Between Hashes \
+\n 6.  is Palindrome\
+\n 7.  Add element to queue \
+\n 8.  dequeue \
+\n 9.  print Queue \
+\n 10. rotate Queue\
+\n 11. cut And Replace \
+\n 12. sort Kids First \
+\n 0.  Exit \n\
 \n Your choice: ");
 	fseek(stdin, SEEK_END, 0);
 	char c = getchar();
