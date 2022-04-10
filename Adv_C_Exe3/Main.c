@@ -37,6 +37,9 @@ void main() {
 		case '4':
 			rotateStack(&S, 1);
 			break;
+		case '5':
+			flipBetweenHashes("ab");
+			break;
 		case '0':
 			printf("\n Exit ");
 			system("pause");
