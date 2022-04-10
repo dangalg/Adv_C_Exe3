@@ -1,4 +1,4 @@
-#include "Stack.h"
+﻿#include "Stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 /***************** Stack ADT Implementation *****************/
@@ -115,6 +115,7 @@ void flipBetweenHashes(const char* sentence)
 	free(tmpStack);
 }
 
+// להכניס למחסנית עזר, זה יהפוך את הסדר ואז להשוות עם המחסנית המקורית
 int isPalindrome(Stack* s)
 {
 	// add your code here

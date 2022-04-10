@@ -1,4 +1,4 @@
-#include "Queue.h"
+﻿#include "Queue.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -42,7 +42,7 @@ void enqueue(Queue* q, unsigned int data)
 	}
 	else
 	{
-		// Otherwise � it becomes first
+		// Otherwise – it becomes first
 		q->head = p;
 	}
 
@@ -83,6 +83,7 @@ int isEmptyQueue(const Queue* q)
 
 /***************** Functions using Queues - Implementation/definition **************************/
 
+// להוציא את כולם לתור עזר חוץ מהאחרון, לשמור את האחרון ולשים אותו ראשון בתור חדש
 void rotateQueue(Queue* q)
 {
 	// add your code here
@@ -197,6 +198,8 @@ void cutAndReplace(Queue* q)
 	destroyQueue(&tempQueue);
 }
 
+
+// למיין את התור בסדר יורד תחשוב איך. נניח התור  זנב9866833ראש אז הוא הופך ל זנב3366889ראש  
 void sortKidsFirst(Queue* q)
 {
 	// add your code here
