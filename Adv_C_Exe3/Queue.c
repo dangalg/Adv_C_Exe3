@@ -1,7 +1,10 @@
 #include "Queue.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 /***************** Queue ADT Implementation *****************/
+
+void printQueue(const Queue* q);
 
 void initQueue(Queue* q)
 {
@@ -52,7 +55,6 @@ unsigned int dequeue(Queue* q)
 	// add your code here
 	if (isEmptyQueue(q))
 	{
-		printf ("Cannot dequeue an empty queue!");
 		return 0;
 	}
 	int temp = q->head->data;
