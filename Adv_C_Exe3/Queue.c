@@ -156,7 +156,7 @@ void cutAndReplace(Queue* q)
 	// flip secondHalfQueue queue
 	// in order to flip it we will move it back and forth between secondHalfQueue and tempQueue and save the last value back to q everytime
 	int transferDirection = 1;
-	int indexToTake = length - 1;
+	int indexToTake = (length / 2) - 1;
 	for (int i = 0; i < length/2; i++)
 	{
 		if (transferDirection == 1)

@@ -219,7 +219,7 @@ void printStack(const Stack* s)
 		printf("%c", letter);
 	}
 
-	while (!isEmptyStack(s))
+	while (!isEmptyStack(&tmpStack))
 	{
 		letter = pop(&tmpStack);
 		push(s, letter);
