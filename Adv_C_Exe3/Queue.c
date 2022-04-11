@@ -198,10 +198,49 @@ void cutAndReplace(Queue* q)
 	destroyQueue(&tempQueue);
 }
 
-
+// not finished
 // למיין את התור בסדר יורד תחשוב איך. נניח התור  זנב9866833ראש אז הוא הופך ל זנב3366889ראש  
 void sortKidsFirst(Queue* q)
 {
+	
+	if (isEmptyQueue(q))
+	{
+		printf("\n");
+		printf("There is no queue please init one.");
+		return;
+	}
+	else
+	{
+		Queue tmpQueue, tmpQueue2;
+		initQueue(&tmpQueue);
+		initQueue(&tmpQueue2);
+		int val, val2;
+		val = dequeue(q); //5
+		enqueue(&tmpQueue, val); //5
+		while (!isEmptyQueue(q))
+		{
+			val = dequeue(q); //5
+			while (!isEmptyQueue(&tmpQueue))
+			{
+				val2 = dequeue(&tmpQueue); 
+				if (val < val2 )
+				{
+					enqueue(&tmpQueue, val);
+				}
+				else
+				{
+					enqueue(&tmpQueue2, val2);
+				}
+			}
+		}
+
+		while (!isEmptyQueue(&tmpQueue))
+		{
+
+		}
+
+	}
+
 	// add your code here
 }
 
