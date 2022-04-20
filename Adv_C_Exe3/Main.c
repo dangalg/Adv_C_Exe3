@@ -35,20 +35,37 @@ void main() {
 			break;
 		case 3:
 			printStack(&S);
+			printf("\n");
 			break;
 		case 4:
-			
+			push(&S, 'D');
+			push(&S, 'E');
+			push(&S, 'F');
+			push(&S, 'A');
+			push(&S, 'B');
+			push(&S, 'C');
+			printf("Normal Stack:\n");
+			printStack(&S);
+			printf("\n");
 			rotateStack(&S, 3);
+			printf("Rotated 3 Stack:\n");
+			printStack(&S);
+			printf("\n");
 			break;
 		case 5:
+			printf("Normal sentence:\n");
+			printf("#meR#embe#siht r# practice\n");
+			printf("flipped hash sentence:\n");
 			flipBetweenHashes("#meR#embe#siht r# practice");
 			break;
 		case 6:
 			push(&S, 'M');
 			push(&S, 'A');
 			push(&S, 'D');
-			push(&S, 'A');
+			push(&S, 'R');
 			push(&S, 'M');
+			printStack(&S);
+			printf("\n");
 			if (isPalindrome(&S))
 			{
 				printf("This is a Palindrome");
@@ -77,8 +94,19 @@ void main() {
 			printQueue(&Q);
 			break;
 		case 10:
-			
+			enqueue(&Q, 6);
+			enqueue(&Q, 5);
+			enqueue(&Q, 4);
+			enqueue(&Q, 3);
+			enqueue(&Q, 2);
+			enqueue(&Q, 1);
+			printf("Normal Queue:\n");
+			printQueue(&Q);
+			printf("\n");
 			rotateQueue(&Q);
+			printf("Rotated Queue:\n");
+			printQueue(&Q);
+			printf("\n");
 			break;
 		case 11:
 			enqueue(&Q, 6);
@@ -87,8 +115,13 @@ void main() {
 			enqueue(&Q, 3);
 			enqueue(&Q, 1);
 			enqueue(&Q, 9);
-
+			printf("Normal Queue:\n");
+			printQueue(&Q);
+			printf("\n");
 			cutAndReplace(&Q);
+			printf("Cut And Replaced Queue:\n");
+			printQueue(&Q);
+			printf("\n");
 			break;
 		case 12:
 			enqueue(&Q, 6);
@@ -98,8 +131,13 @@ void main() {
 			enqueue(&Q, 3);
 			enqueue(&Q, 1);
 			enqueue(&Q, 9);
-
+			printf("Normal Queue:\n");
+			printQueue(&Q);
+			printf("\n");
 			sortKidsFirst(&Q);
+			printf("Sort Kids First Queue:\n");
+			printQueue(&Q);
+			printf("\n");
 			break;
 		case 0:
 			printf("\n Exit ");
