@@ -43,7 +43,10 @@ void main() {
 			flipBetweenHashes("ab");
 			break;
 		case 6:
-			isPalindrome(&S);
+			if (isPalindrome(&S))
+			{
+			printf("This is a Palindrome");
+			}
 			break;
 		case 7:
 			printf("Enter queue data: ");

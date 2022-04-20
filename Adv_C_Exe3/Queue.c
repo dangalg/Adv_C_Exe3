@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /***************** Queue ADT Implementation *****************/
-
+int findMinimumInQueue(Queue* q);
 void printQueue(const Queue* q);
 
 void initQueue(Queue* q)
@@ -198,11 +198,9 @@ void cutAndReplace(Queue* q)
 	destroyQueue(&tempQueue);
 }
 
-// not finished
-// למיין את התור בסדר יורד תחשוב איך. נניח התור  זנב9866833ראש אז הוא הופך ל זנב3366889ראש  
+  
 void sortKidsFirst(Queue* q)
 {
-	
 	if (isEmptyQueue(q))
 	{
 		printf("\n");
@@ -211,37 +209,19 @@ void sortKidsFirst(Queue* q)
 	}
 	else
 	{
-		Queue tmpQueue, tmpQueue2;
+		int val;
+		Queue tmpQueue;
 		initQueue(&tmpQueue);
-		initQueue(&tmpQueue2);
-		int val, val2;
-		val = dequeue(q); //5
-		enqueue(&tmpQueue, val); //5
 		while (!isEmptyQueue(q))
 		{
-			val = dequeue(q); //5
-			while (!isEmptyQueue(&tmpQueue))
-			{
-				val2 = dequeue(&tmpQueue); 
-				if (val < val2 )
-				{
-					enqueue(&tmpQueue, val);
-				}
-				else
-				{
-					enqueue(&tmpQueue2, val2);
-				}
-			}
+			val = findMinimumInQueue(q);
+			enqueue(&tmpQueue, val);
 		}
-
 		while (!isEmptyQueue(&tmpQueue))
 		{
-
+			enqueue(q, dequeue(&tmpQueue));
 		}
-
 	}
-
-	// add your code here
 }
 
 void printQueue(const Queue* q)
@@ -263,4 +243,31 @@ void printQueue(const Queue* q)
 	}
 
 	destroyQueue(&tmpQueue);
+}
+
+
+int findMinimumInQueue(Queue* q)
+{
+	int min = dequeue(q);
+	int val = 0;
+	Queue tmpQueue;
+	initQueue(&tmpQueue);
+	while (!isEmptyQueue(q))
+	{
+	    val = dequeue(q);
+		if(min > val)
+		{
+			enqueue(&tmpQueue, min);
+			min = val;
+		}
+		else
+		{
+			enqueue(&tmpQueue, val);
+		}
+	}
+	while (!isEmptyQueue(&tmpQueue))
+	{
+		enqueue(q,dequeue(&tmpQueue));
+	}
+	return min;
 }

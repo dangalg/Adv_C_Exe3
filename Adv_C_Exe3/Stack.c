@@ -118,7 +118,67 @@ void flipBetweenHashes(const char* sentence)
 // להכניס למחסנית עזר, זה יהפוך את הסדר ואז להשוות עם המחסנית המקורית
 int isPalindrome(Stack* s)
 {
-	// add your code here
+	Stack tmpStack , tmpStack2 , tmpStack3;
+	initStack(&tmpStack);
+	initStack(&tmpStack2);
+	initStack(&tmpStack3);
+
+	int counter=0;
+
+	while (!isEmptyStack(s))
+	{
+		push(&tmpStack, pop(s));
+		counter++;
+	}
+
+	char middleChar;
+	int evenList = 0;
+
+	if ((counter % 2) == 0)
+	{
+		evenList = 1;
+		for (int i = 0; i < counter / 2; i++)
+		{
+			push(&tmpStack2, pop(&tmpStack));
+		}
+	}
+	else
+	{
+		for (int i = 0; i < counter / 2; i++)
+		{
+			push(&tmpStack2, pop(&tmpStack));
+		}
+		middleChar = pop(&tmpStack);
+	}
+	int val1, val2 , isPalindrom=1;
+	while (!isEmptyStack(&tmpStack))
+	{
+		val1 = pop(&tmpStack);
+		val2 = pop(&tmpStack2);
+		if (val1 != val2)
+		{
+			isPalindrom = 0;
+		}
+		push(s, val1);
+		push(&tmpStack3, val2);
+	}
+
+	if (!evenList)
+	{
+		push(s, middleChar);
+	}
+	
+	while (!isEmptyStack(&tmpStack3))
+	{
+		push(s, pop(&tmpStack3));
+	}
+
+	destroyStack(&tmpStack);
+	destroyStack(&tmpStack2);
+	destroyStack(&tmpStack3);
+
+	return isPalindrom;
+
 }
 
 void rotateStack(Stack* s, int n)
