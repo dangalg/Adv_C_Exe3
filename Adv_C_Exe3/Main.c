@@ -37,15 +37,25 @@ void main() {
 			printStack(&S);
 			break;
 		case 4:
-			rotateStack(&S, 1);
+			
+			rotateStack(&S, 3);
 			break;
 		case 5:
-			flipBetweenHashes("ab");
+			flipBetweenHashes("#meR#embe#siht r# practice");
 			break;
 		case 6:
+			push(&S, 'M');
+			push(&S, 'A');
+			push(&S, 'D');
+			push(&S, 'A');
+			push(&S, 'M');
 			if (isPalindrome(&S))
 			{
-			printf("This is a Palindrome");
+				printf("This is a Palindrome");
+			}
+			else
+			{
+				printf("This is not a Palindrome");
 			}
 			break;
 		case 7:
@@ -67,9 +77,20 @@ void main() {
 			printQueue(&Q);
 			break;
 		case 10:
-			rotateQueue(&Q, 1);
+			
+			rotateQueue(&Q);
 			break;
 		case 11:
+			enqueue(&Q, 6);
+			enqueue(&Q, 5);
+			enqueue(&Q, 2);
+			enqueue(&Q, 3);
+			enqueue(&Q, 1);
+			enqueue(&Q, 9);
+
+			cutAndReplace(&Q);
+			break;
+		case 12:
 			enqueue(&Q, 6);
 			enqueue(&Q, 1);
 			enqueue(&Q, 5);
@@ -77,9 +98,7 @@ void main() {
 			enqueue(&Q, 3);
 			enqueue(&Q, 1);
 			enqueue(&Q, 9);
-			cutAndReplace(&Q);
-			break;
-		case 12:
+
 			sortKidsFirst(&Q);
 			break;
 		case 0:

@@ -68,9 +68,8 @@ void flipBetweenHashes(const char* sentence)
 		return;
 	}
 
-	// add your code here
-	Stack* tmpStack = (Stack*)malloc(sizeof(Stack));
-	initStack(tmpStack);
+	Stack tmpStack;
+	initStack(&tmpStack);
 
 	// counts the amount of hashes
 	int hashAmount = 0;
@@ -79,40 +78,39 @@ void flipBetweenHashes(const char* sentence)
 	{
 		// catch # and decide what to do
 		char tmpChar = *sentence;
-		if (tmpChar == "#")
+		if (tmpChar == '#')
 		{
 			// increment hash amount
 			hashAmount++;
 
-			// after the second has print the temp stack and empty it
+			// after the second hash print the temp stack and empty it
 			if (hashAmount == 2)
 			{
 				// reset has amount
 				hashAmount = 0;
 
 				// print and destroy temp stack
-				printStack(tmpStack);
-				destroyStack(tmpStack);
+				printStack(&tmpStack);
+				destroyStack(&tmpStack);
 			}
 		}
 		
 		// no hashes just print the char
-		if (hashAmount == 0)
+		else if (hashAmount == 0)
 		{
 			printf("%c", tmpChar);
 		}
 
 		// between hashes insert chars to temp stack
-		if (hashAmount == 1)
+		else if (hashAmount == 1)
 		{
-			push(tmpStack, tmpChar);
+			push(&tmpStack, tmpChar);
 		}
 
 		sentence++;
 	}
 
-	destroyStack(tmpStack);
-	free(tmpStack);
+	destroyStack(&tmpStack);
 }
 
 // להכניס למחסנית עזר, זה יהפוך את הסדר ואז להשוות עם המחסנית המקורית
@@ -125,6 +123,7 @@ int isPalindrome(Stack* s)
 
 	int counter=0;
 
+	// get length of stack
 	while (!isEmptyStack(s))
 	{
 		push(&tmpStack, pop(s));
@@ -134,6 +133,7 @@ int isPalindrome(Stack* s)
 	char middleChar;
 	int evenList = 0;
 
+	// if stack is even get half the stack into another stack
 	if ((counter % 2) == 0)
 	{
 		evenList = 1;
@@ -142,6 +142,7 @@ int isPalindrome(Stack* s)
 			push(&tmpStack2, pop(&tmpStack));
 		}
 	}
+	// if stack is odd save the middle char and get half the stack into another stack
 	else
 	{
 		for (int i = 0; i < counter / 2; i++)
@@ -150,6 +151,8 @@ int isPalindrome(Stack* s)
 		}
 		middleChar = pop(&tmpStack);
 	}
+
+	// compare the two halves, if they are equal it is a palindrome
 	int val1, val2 , isPalindrom=1;
 	while (!isEmptyStack(&tmpStack))
 	{
@@ -159,15 +162,20 @@ int isPalindrome(Stack* s)
 		{
 			isPalindrom = 0;
 		}
+
+		// return the first half to q
 		push(s, val1);
+		// save the second half to return to q later
 		push(&tmpStack3, val2);
 	}
 
+	// push middle char back to q
 	if (!evenList)
 	{
 		push(s, middleChar);
 	}
 	
+	// push the second half back to q
 	while (!isEmptyStack(&tmpStack3))
 	{
 		push(s, pop(&tmpStack3));
@@ -275,13 +283,14 @@ void printStack(const Stack* s)
 	while (!isEmptyStack(s))
 	{
 		letter = pop(s);
-		push(&tmpStack, letter);
 		printf("%c", letter);
+		push(&tmpStack, letter);
 	}
 
 	while (!isEmptyStack(&tmpStack))
 	{
 		letter = pop(&tmpStack);
+		
 		push(s, letter);
 	}
 

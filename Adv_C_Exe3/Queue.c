@@ -5,6 +5,7 @@
 /***************** Queue ADT Implementation *****************/
 int findMinimumInQueue(Queue* q);
 void printQueue(const Queue* q);
+int getLastValueFromListByIndex(int length, Queue* fromQueue, Queue* toQueue, int index);
 
 void initQueue(Queue* q)
 {
@@ -87,18 +88,39 @@ int isEmptyQueue(const Queue* q)
 void rotateQueue(Queue* q)
 {
 	// add your code here
-	if (isEmptyQueue(q) == 1)
+	if (isEmptyQueue(q))
 	{
 		printf("\n");
 		printf("There is no queue to rotate.");
 	}
 	else
 	{
-		intNode* temp = q->head;
-		intNode* last = q->tail;
-		last = q->head;
-		temp = q->tail;
-			return last;
+		Queue tmpQueue;
+		initQueue(&tmpQueue);
+		int lastValue = 0;
+
+		// get last value from list
+		while (!isEmptyQueue(q))
+		{
+			int val = dequeue(q);
+			lastValue = val;
+
+			// dont return last value to list
+			if (!isEmptyQueue(q))
+			{
+				enqueue(&tmpQueue, val);
+			}
+		}
+
+		// insert last value first
+		enqueue(q, lastValue);
+
+		// return values to q
+		while (!isEmptyQueue(&tmpQueue))
+		{
+			int val = dequeue(&tmpQueue);
+			enqueue(q, val);
+		}
 	}
 }
 
@@ -161,27 +183,11 @@ void cutAndReplace(Queue* q)
 	{
 		if (transferDirection == 1)
 		{
-			for (int j = 0; j < (length / 2); j++)
-			{
-				val = dequeue(&secondHalfQueue);
-				if (j == indexToTake)
-				{
-					enqueue(q, val);
-				}
-				enqueue(&tempQueue, val);
-			}
+			enqueue(q, getLastValueFromListByIndex(length, &secondHalfQueue, &tempQueue, indexToTake));
 		}
 		else
 		{
-			for (int j = 0; j < (length / 2); j++)
-			{
-				val = dequeue(&tempQueue);
-				if (j == indexToTake)
-				{
-					enqueue(q, val);
-				}
-				enqueue(&secondHalfQueue, val);
-			}
+			enqueue(q, getLastValueFromListByIndex(length, &tempQueue, &secondHalfQueue, indexToTake));
 		}
 		transferDirection *= -1;
 		indexToTake--;
@@ -270,4 +276,19 @@ int findMinimumInQueue(Queue* q)
 		enqueue(q,dequeue(&tmpQueue));
 	}
 	return min;
+}
+
+int getLastValueFromListByIndex(int length, Queue* fromQueue, Queue* toQueue, int index)
+{
+	int val, res = 0;
+	for (int j = 0; j < (length / 2); j++)
+	{
+		val = dequeue(fromQueue);
+		if (j == index)
+		{
+			res = val;
+		}
+		enqueue(toQueue, val);
+	}
+	return res;
 }
