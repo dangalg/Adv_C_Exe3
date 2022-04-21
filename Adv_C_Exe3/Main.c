@@ -51,6 +51,8 @@ void main() {
 			printf("Rotated 3 Stack:\n");
 			printStack(&S);
 			printf("\n");
+			destroyStack(&S);
+			initStack(&S);
 			break;
 		case 5:
 			printf("Normal sentence:\n");
@@ -74,6 +76,8 @@ void main() {
 			{
 				printf("This is not a Palindrome");
 			}
+			destroyStack(&S);
+			initStack(&S);
 			break;
 		case 7:
 			printf("Enter queue data: ");
@@ -107,6 +111,8 @@ void main() {
 			printf("Rotated Queue:\n");
 			printQueue(&Q);
 			printf("\n");
+			destroyQueue(&Q);
+			initQueue(&Q);
 			break;
 		case 11:
 			enqueue(&Q, 6);
@@ -122,6 +128,8 @@ void main() {
 			printf("Cut And Replaced Queue:\n");
 			printQueue(&Q);
 			printf("\n");
+			destroyQueue(&Q);
+			initQueue(&Q);
 			break;
 		case 12:
 			enqueue(&Q, 6);
@@ -138,6 +146,8 @@ void main() {
 			printf("Sort Kids First Queue:\n");
 			printQueue(&Q);
 			printf("\n");
+			destroyQueue(&Q);
+			initQueue(&Q);
 			break;
 		case 0:
 			printf("\n Exit ");
